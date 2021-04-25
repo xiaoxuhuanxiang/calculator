@@ -1,11 +1,11 @@
 #pragma once
-#include "global.h"
+#include "Global.h"
 #include "value_c.h"
 class value_v_base
 {
 public:
 	value_v_base() {};
-	~value_v_base() {};
+	virtual ~value_v_base() {};
 	virtual void reset() = 0;
 	virtual void print() = 0;
 	virtual int Init(value_c *vc) = 0;

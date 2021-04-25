@@ -1,0 +1,118 @@
+calculator.cpp
+	主函数，目前用于测试
+
+global.h
+global.cpp
+
+	全局信息，用于定义枚举类型（运算符类型，数值类型），全局常数，全局工具函数。
+	定义了Global类，该类内部全部都是静态函数和静态变量。
+	（1）初始化
+	static void Init();
+
+	（2）根据字符串确定运算符类型
+	static operType getOperType(const string &oper_c, int &len); 
+	获取字符串对应的操作符类型，len表示匹配到的操作符长度（未来可能>1）
+
+	（3）根据运算符字符串确定运算符优先级
+	static int getOperPrior_char(const string &oper_c);
+
+	（4）根据运算符类型确定运算符优先级
+	static int getOperPrior_type(operType theType);
+
+	（5）判断当前字符串是否是数字的一部分
+	static bool isPartOfNumber(const char val_c, const char *val_c_reverse1);
+
+	（6）获取当前所有运算符中，最长的运算符所占字节数，用于切词。
+	static int getMaxOperByte();    
+	获取运算符最大字节数，以考虑后续出现"**"这类符号
+
+value_c.h
+value_c.cpp
+	对输入表达式切分后的元素，以value_c类来存储。此类可以存储数值，操作符等。内部采用string存储相关信息。
+	包含以下接口。
+	1. 初始化
+	int Init(string &input, int pos, bool isOper);  
+
+	参数：
+	input：输入的切分字符串
+	pos：该字符串在整个表达式中的位置，主要用于报错提示
+	isOper：是否是运算符
+
+	功能：
+	（1）确定当前值是数值还是运算符；
+	（2）若是运算符，则确定运算符的类型。
+	（3）若是数字，则检查数字的合法性，去除数字头部的多余0，获取有效数字位数等
+	参数检查。
+
+	2. 是否为运算符
+	bool isOper()
+	仅初始化之后才能使用
+
+	3. 获取有效数字位数
+	int getValidNum()
+	仅初始化之后才能使用
+
+	4. 获取数值类型
+	valueType getValueType()
+	仅初始化之后才能使用，获取数值类型（int，double，string）
+
+	5.获取运算符类型（+ - * /）
+	operType getOperType()
+	仅初始化之后才能使用
+
+	6.获取字符串
+	const char* getData();
+	仅初始化之后才能使用
+
+	7.获取在整个输入表达式中的位置
+	int getPos();
+	仅初始化之后才能使用
+
+Parser.h
+Parser.cpp
+	解析器的抽象基类，规定了两个纯虚函数接口
+	（1）virtual void setInput(const std::string &input) = 0;
+	设定输入字符串。（一般应为中缀表达式）
+	（2）virtual int getRes(std::queue<value_c*> &theRes) = 0;
+	用于将中缀表达式解析成队列theRes，供后续执行器使用
+
+value_v_base.h
+value_v_base.cpp
+	数值型存储的基类，若value_c类型的切词结果确定是数值，则需要转换成value_v_base及其派生类
+	包含以下接口
+	（1）virtual void reset() = 0;
+	将数据重置。
+	（2）virtual void print() = 0;
+	打印数据
+	（3）virtual int Init(value_c *vc) = 0;
+	从value_c类型转换成当前数值类型
+	（4）virtual int executeFunction(value_v_base *v1, value_v_base *v2, operType ot) = 0;
+	执行运算符操作函数，根据ot（+ - * /）给出相应的结果，这部分需要考虑类型分析，类型提升等。
+
+Parser_RPN.h
+Parser_RPN.cpp
+	逆波兰表达式的解析器，最终将输入字符串解析为队列，逆波兰表达式的具体原则此处不再赘述。
+	
+Executor.h
+Executor.cpp
+	执行器抽象基类
+	包含三个纯虚函数接口
+	（1）设定输入字符串
+	virtual void setInput(const string &input) = 0;
+	（2）执行
+	virtual int execute() = 0;
+	（3）获取结果，这里获取结果采用了value_v_base类存储结果。
+	virtual value_v_base* getResult() = 0;
+	
+	包含三个数据成员：
+	（1）与当前执行器相匹配的解析器
+	Parser *m_theParser;
+	（2）暂时无用，本意是想存储解析器的解析队列结果。
+	queue<value_c *> m_theQueue;
+	（3）执行器最终结果
+	value_v_base* m_res;
+
+Executor_RPN.h
+Executor_RPN.cpp
+	逆波兰表达式解析器，所对应的执行器。
+	功能是将Parser_RPN类生成的逆波兰表达式的队列作为输入，计算最终结果。

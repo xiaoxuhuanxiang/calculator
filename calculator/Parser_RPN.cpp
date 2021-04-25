@@ -1,5 +1,7 @@
 #include "Parser_RPN.h"
 #include <iostream>
+#include <ctype.h>
+#include <algorithm>
 Parser_RPN::Parser_RPN()
 {
 
@@ -136,7 +138,7 @@ int Parser_RPN::getRes(queue<value_c*> &theRes)
 	if (m_parser_data.empty()) return -1;
 	stack<value_c*> theStack;
 	int res;
-	m_parser_data.erase(remove_if(m_parser_data.begin(), m_parser_data.end(), isspace), m_parser_data.end());
+	m_parser_data.erase(remove_if(m_parser_data.begin(), m_parser_data.end(), ::isspace), m_parser_data.end());
 	string::iterator itStart = m_parser_data.begin();
 	string::iterator itEnd = itStart;
 	char *lc;

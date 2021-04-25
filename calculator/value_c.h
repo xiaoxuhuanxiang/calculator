@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <set>
-#include "global.h"
+#include "Global.h"
 using namespace std;
 class value_c
 {

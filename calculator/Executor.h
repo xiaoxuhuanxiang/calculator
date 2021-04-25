@@ -6,7 +6,7 @@ class Executor
 {
 public:
 	Executor();
-	~Executor();
+	virtual	~Executor();
 	virtual void setInput(const string &input) = 0;
 	virtual int execute() = 0;
 	virtual value_v_base* getResult() = 0;

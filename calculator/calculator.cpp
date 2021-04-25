@@ -19,6 +19,8 @@ int main(int argc, char *argv[])
 	testExample.push_back("(01+2)*03+4"); //有0开头的数字
 	testExample.push_back("1/2+3*5+(012.53+09.8/02)*6"); //有0开头数字，有小数，有括号和高优先级运算符
 	testExample.push_back("1/2+3*5-(012.53+09.8/02)*6"); //加减乘除，括号，小数
+	testExample.push_back("1/2+3*5-	(012.53+ 09.8/02)*6"); //加减乘除，括号，小数，空格，tab键
+	
 	for (size_t ix = 0; ix < testExample.size(); ++ix)
 	{
 		Executor *p = new Executor_RPN();
@@ -34,5 +36,5 @@ int main(int argc, char *argv[])
 		delete p;
 	}
 	
-	system("pause");
+	//system("pause");
 }

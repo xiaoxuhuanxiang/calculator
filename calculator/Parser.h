@@ -6,7 +6,7 @@ class Parser
 {
 public:
 	Parser() {};
-	~Parser() {};
+	virtual	~Parser() {};
 
 	virtual void setInput(const std::string &input) = 0;
 	virtual int getRes(std::queue<value_c*> &theRes) = 0;
