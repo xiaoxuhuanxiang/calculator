@@ -152,6 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="calculator.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="Executor.cpp" />
     <ClCompile Include="Executor_RPN.cpp" />
     <ClCompile Include="Global.cpp" />
@@ -162,6 +163,7 @@
     <ClCompile Include="value_v_base.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Client.h" />
     <ClInclude Include="Executor.h" />
     <ClInclude Include="Executor_RPN.h" />
     <ClInclude Include="Global.h" />

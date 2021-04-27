@@ -20,7 +20,7 @@ enum operType
 };
 
 const int doubleValidNum = 15;
-
+const char sentenceEnd = ';';
 class Global
 {
 public:

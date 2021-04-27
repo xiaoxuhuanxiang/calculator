@@ -9,8 +9,17 @@
 #include "Executor_RPN.h"
 #include "value_v_base.h"
 #include "value_v.h"
+#include "Client.h"
 using namespace std;
 int main(int argc, char *argv[])
+{
+	Client *cl = new Client();
+	cl->clientRun();
+	delete cl;
+	return 0;
+}
+
+int main_old(int argc, char *argv[])
 {
 	vector<string> testExample;
 	testExample.push_back("1+2+3+4");     //正常加法
@@ -35,6 +44,5 @@ int main(int argc, char *argv[])
 		res->print();
 		delete p;
 	}
-	
-	//system("pause");
+	return 0;
 }

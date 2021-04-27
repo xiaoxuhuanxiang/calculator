@@ -23,7 +23,7 @@ int Parser_RPN::pushValue(string::iterator &it, string::iterator &itStart, strin
 	{
 		string val(itStart, itEnd);
 		value_c *vc = new value_c();
-		if (vc->Init(val, it - m_parser_data.begin(), false))
+		if (vc->Init(val, int(it - m_parser_data.begin()), false))
 		{
 			cout << "the value input is not valid, pos = " << it - m_parser_data.begin() << endl;
 			return -1;
@@ -49,7 +49,7 @@ int Parser_RPN::dealWithOper(string::iterator &it, string::iterator &itStart, st
 		
 		string theOper(it, it + len);
 		value_c *oc = new value_c();
-		if (oc->Init(theOper, it - m_parser_data.begin(), true))
+		if (oc->Init(theOper, int(it - m_parser_data.begin()), true))
 		{
 			delete oc;
 			cout << "the oper input is not valid, pos = " << it - m_parser_data.begin() << endl;
@@ -144,7 +144,7 @@ int Parser_RPN::getRes(queue<value_c*> &theRes)
 	char *lc;
 	for (string::iterator it = m_parser_data.begin(); it != m_parser_data.end(); ++it)
 	{
-		if (itStart == m_parser_data.begin()) lc = NULL;
+		if (it == m_parser_data.begin()) lc = NULL;
 		else lc = &(*(it - 1));
 		if (Global::isPartOfNumber(*it,lc))  //数字的一部分
 		{

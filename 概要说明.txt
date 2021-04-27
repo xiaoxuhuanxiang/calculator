@@ -1,5 +1,17 @@
 calculator.cpp
-	主函数，目前用于测试
+	主函数，目前用于生成Client类的对象，运行runClient函数。
+
+Client.h
+Client.cpp
+	Client类，用于处理REPL。
+	对外接口：clientRun
+	用于循环读入输入串，并输出结果。
+	规则：
+	1. 以半角分号作为语句的结束符。
+	2. 输入提示符为“>”。
+	3. 每次识别到完整语句时，会以Full input detected: xxx的方式输出完整语句，而后给出结果。
+	4. 支持一次输入多句，甚至一次输入一句半。
+	5. 当输入句半时，会识别到完整语句，按3的方式处理。在输出结果后，会将剩余的半句重新打印在后面（前加提示符“>”），并换行。当再输入语句时，可以接续。
 
 global.h
 global.cpp
@@ -88,6 +100,10 @@ value_v_base.cpp
 	从value_c类型转换成当前数值类型
 	（4）virtual int executeFunction(value_v_base *v1, value_v_base *v2, operType ot) = 0;
 	执行运算符操作函数，根据ot（+ - * /）给出相应的结果，这部分需要考虑类型分析，类型提升等。
+
+value_v.h
+value_v.cpp
+	value_v_base类的具体实现类。实现了运算数值的四则运算，类型分析，类型提升等功能。
 
 Parser_RPN.h
 Parser_RPN.cpp

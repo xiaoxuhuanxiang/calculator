@@ -125,7 +125,7 @@ bool value_c::isOper()
 
 int value_c::calcuValidNum()
 {
-	if (!m_bdot) return m_data.size();
+	if (!m_bdot) return int(m_data.size());
 	int dotPos = -1;
 	int firstNonZeroPos = -1;
 	for (string::iterator it = m_data.begin(); it != m_data.end(); ++it)
@@ -141,8 +141,8 @@ int value_c::calcuValidNum()
 		}
 	}
 
-	if (firstNonZeroPos > dotPos) return m_data.size() - firstNonZeroPos;
-	else return m_data.size() - firstNonZeroPos - 1;
+	if (firstNonZeroPos > dotPos) return int(m_data.size()) - firstNonZeroPos;
+	else return int(m_data.size()) - firstNonZeroPos - 1;
 	return 0;
 }
 

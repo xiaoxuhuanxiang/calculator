@@ -35,7 +35,7 @@ operType Global::getOperType(const string &oper_c, int &len)
 
 	if (operMap.find(oper_c) != operMap.end())
 	{
-		len = oper_c.size();
+		len = int(oper_c.size());
 		return operMap[oper_c];
 	}
 	string oper_c_tmp = oper_c;
@@ -44,7 +44,7 @@ operType Global::getOperType(const string &oper_c, int &len)
 	{
 		if (operMap.find(oper_c_tmp) != operMap.end())
 		{
-			len = oper_c_tmp.size();
+			len = int(oper_c_tmp.size());
 			return operMap[oper_c_tmp];
 		}
 		else
