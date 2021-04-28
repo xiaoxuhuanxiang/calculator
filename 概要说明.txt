@@ -1,3 +1,9 @@
+test.sh
+	新增的交互自动测试脚本，运行前必须编译，且安装expect (apt install expect)
+	运行方式：./test.sh > test.res
+	运行后，将test.res和test.req文件进行比对(vimdiff test.res test.req)
+	二者无差别，则测试通过
+
 calculator.cpp
 	主函数，目前用于生成Client类的对象，运行runClient函数。
 
@@ -12,7 +18,7 @@ Client.cpp
 	3. 每次识别到完整语句时，会以Full input detected: xxx的方式输出完整语句，而后给出结果。
 	4. 支持一次输入多句，甚至一次输入一句半。
 	5. 当输入句半时，会识别到完整语句，按3的方式处理。在输出结果后，会将剩余的半句重新打印在后面（前加提示符“>”），并换行。当再输入语句时，可以接续。
-
+	6. 输入“quit;”（不含引号）语句退出程序。
 global.h
 global.cpp
 

@@ -2,7 +2,7 @@ CC = g++
 
 CFLAGS=-Wall -O2
 
-TARGET = main
+TARGET = calculator
 
 SRCS := $(wildcard *.cpp) 
 

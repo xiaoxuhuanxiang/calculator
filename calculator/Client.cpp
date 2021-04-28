@@ -28,14 +28,14 @@ void Client::clientRun()
 		{
 			if (pos == str_crt.npos)
 			{
-				cout << "<" << str_crt << endl;
+				cout << promptIden << str_crt << endl;
 			}
 		}
 		
 		if (pos == str_crt.npos)
 		{
 			string tmp;
-			cout << "<";
+			cout << promptIden;
 			getline(cin, tmp);
 			str_crt += tmp;
 			lastExecute = false;

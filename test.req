@@ -1,0 +1,36 @@
+spawn ./calculator/calculator
+>1+2+3+4;
+Full input detected: 1+2+3+4
+theResult=10
+>1+2*3+4;
+Full input detected: 1+2*3+4
+theResult=11
+>(1+2)*3+4;
+Full input detected: (1+2)*3+4
+theResult=13
+>(01+2)*03+4;
+Full input detected: (01+2)*03+4
+theResult=13
+>1/2+3*5+(012.53+09.8/02)*6;
+Full input detected: 1/2+3*5+(012.53+09.8/02)*6
+theResult=120.08
+>1/2+3*5-	(012.53+ 09.8/02)*6;
+Full input detected: 1/2+3*5-	(012.53+ 09.8/02)*6
+theResult=-89.08
+>1/2+3*5
+> -	(012.53+ 09.8/02)*6;
+Full input detected: 1/2+3*5 -	(012.53+ 09.8/02)*6
+theResult=-89.08
+>1+2+4-6*2; 1+3+5-9*7
+Full input detected: 1+2+4-6*2
+theResult=-5
+> 1+3+5-9*7
+> -8;
+
+Full input detected:  1+3+5-9*7 -8
+theResult=-62
+>>1+3;
+quit;
+Full input detected: 1+3
+theResult=4
+>Full input detected: quit

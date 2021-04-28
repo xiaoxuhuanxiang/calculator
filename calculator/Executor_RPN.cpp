@@ -34,6 +34,7 @@ int Executor_RPN::execute()
 			return -1;
 		}
 		if (m_res->Init(vc)) return -1;
+		else return 0;
 	}
 	if (theParserRes.size() < 3)
 	{
