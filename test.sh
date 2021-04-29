@@ -1,5 +1,5 @@
 #!/usr/bin/expect
-
+set timeout 5
 spawn ./calculator/calculator
 
 # only plus
@@ -39,15 +39,13 @@ expect {
     ">" {send " -	(012.53+ 09.8/02)*6;\r"}
 }
 
-#expect ">"
-#send  "1+2+4-6*2; 1+3+5-9*7\r"
-#expect "> 1+3+5-9*7"
-#expect ">"
-#send " -8;\r"
-
 # one sentence and a half in one line
 expect {
     ">" {send "1+2+4-6*2; 1+3+5-9*7\r"}
+}
+
+expect {
+    "> 1+3+5-9*7" {send ""}; #The halfline will be print again by the calculator
 }
 
 expect {
@@ -60,9 +58,8 @@ expect {
 }
 
 expect {
-    ">" {send "1+3;\r"}
+    ">" {send "1+3;\r"};
 }
-
 #exit
 expect {
     ">" {send "quit;\r"}
